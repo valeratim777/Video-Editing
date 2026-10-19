@@ -1,0 +1,140 @@
+{
+    "source":  "assets/source.mp4",
+    "output":  "assets/base.mp4",
+    "audioChain":  "highpass=f=70,acompressor=threshold=0.125:ratio=2:attack=10:release=150:makeup=1.5,loudnorm=I=-14:TP=-1.5:LRA=7",
+    "width":  1080,
+    "height":  1920,
+    "fps":  30,
+    "overlay":  {
+                    "kicker":  "",
+                    "title":  [
+                                  "De alejarme de Dios",
+                                  "a ver milagros"
+                              ],
+                    "titleAccentWord":  "milagros",
+                    "titleUntil":  3.3,
+                    "chip":  "TESTIMONIO",
+                    "end":  "Comparte si esto te habló",
+                    "endFrom":  -3.5,
+                    "keywords":  "Dios,fuego,Espíritu,Santo,real,tocó,contigo,corazón,sanó,instante,sí,mejor,decisión,Creador,milagros,cambia"
+                },
+    "crops":  {
+                  "medium":  {
+                                 "x":  3,
+                                 "y":  150,
+                                 "w":  450,
+                                 "h":  800
+                             },
+                  "tight":  {
+                                "x":  48,
+                                "y":  200,
+                                "w":  360,
+                                "h":  640
+                            }
+              },
+    "segments":  [
+                     {
+                         "id":  "s1",
+                         "from":  0.05,
+                         "to":  3.4,
+                         "crop":  {
+                                      "x":  60,
+                                      "y":  40,
+                                      "w":  540,
+                                      "h":  960
+                                  },
+                         "text":  "Tenía 14 años cuando me alejé de Dios"
+                     },
+                     {
+                         "id":  "s2",
+                         "from":  9.07,
+                         "to":  13.15,
+                         "crop":  "tight",
+                         "text":  "porque pensaba que sabía mejor lo que quería y podía hacer en mi vida."
+                     },
+                     {
+                         "id":  "s3",
+                         "from":  42.67,
+                         "to":  45.6,
+                         "crop":  "medium",
+                         "text":  "Pero en septiembre del año pasado Dios me tocó."
+                     },
+                     {
+                         "id":  "s4",
+                         "from":  49.1,
+                         "to":  54.95,
+                         "crop":  "tight",
+                         "text":  "Yo sentí el fuego del Espíritu Santo y me di cuenta de que Él es real."
+                     },
+                     {
+                         "id":  "s5",
+                         "from":  131.59,
+                         "to":  140.6,
+                         "crop":  "medium",
+                         "text":  "Un día perdí muchas cosas y finalmente dije: Dios, ya no quiero la vida antigua, quiero estar contigo. Cambia mi vida."
+                     },
+                     {
+                         "id":  "s7",
+                         "from":  250.96,
+                         "to":  259.33,
+                         "crop":  "medium",
+                         "text":  "Por ejemplo, una vez me dijo que orara por un hombre desconocido que caminaba con una muleta."
+                     },
+                     {
+                         "id":  "s8",
+                         "from":  265.7,
+                         "to":  267.13,
+                         "crop":  "tight",
+                         "text":  "Y Dios lo sanó"
+                     },
+                     {
+                         "id":  "s8_1",
+                         "from":  268.18,
+                         "to":  270.1,
+                         "crop":  "medium",
+                         "text":  "inmediatamente, al instante."
+                     },
+                     {
+                         "id":  "s8b",
+                         "from":  273.2,
+                         "to":  277.19,
+                         "crop":  "medium",
+                         "text":  "Él tenía un dolor terrible en el talón, pero al final, cuando"
+                     },
+                     {
+                         "id":  "s8b_1",
+                         "from":  277.84,
+                         "to":  284.86,
+                         "crop":  "tight",
+                         "text":  "oré por él, se quedó asombrado: ¿Cómo es posible? ¡Es imposible!"
+                     },
+                     {
+                         "id":  "s9a",
+                         "from":  348.61,
+                         "to":  351.1,
+                         "crop":  "medium",
+                         "text":  "Por eso puedo decir que decirle que…"
+                     },
+                     {
+                         "id":  "s9b",
+                         "from":  352.61,
+                         "to":  354.83,
+                         "crop":  "medium",
+                         "text":  "con certeza, que sí a Dios"
+                     },
+                     {
+                         "id":  "s9b_1",
+                         "from":  355.52,
+                         "to":  358,
+                         "crop":  "tight",
+                         "text":  "fue la mejor decisión de mi vida."
+                     },
+                     {
+                         "id":  "s10",
+                         "from":  363.31,
+                         "to":  371.1,
+                         "crop":  "tight",
+                         "text":  "Esta respuesta al Creador puede cambiar todo en nuestra vida y abrir el camino para que Él obre en nosotros."
+                     }
+                 ]
+}
