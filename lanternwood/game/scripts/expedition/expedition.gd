@@ -65,7 +65,7 @@ func _ready() -> void:
 	add_child(arena)
 
 	var cm := CanvasModulate.new()
-	cm.color = Color(region.colors.light).lightened(0.25)
+	cm.color = Color(region.colors.light).lightened(0.45)
 	if region.twist == "fog":
 		cm.color = cm.color.darkened(0.35)
 		light_scale = 0.8
@@ -76,6 +76,10 @@ func _ready() -> void:
 	lit_layer.layer = 1
 	add_child(lit_layer)
 	fx_layer = lit_layer
+	var rims := Node2D.new()
+	rims.draw.connect(func() -> void: arena.draw_rims(rims))
+	lit_layer.add_child(rims)
+	rims.modulate = Color(1, 1, 1, 0.85)
 
 	camp_pos = arena.cell_center(arena.camp_cell)
 	var fire := Sprite2D.new()
@@ -85,7 +89,8 @@ func _ready() -> void:
 	var fire_light := PointLight2D.new()
 	fire_light.texture = DB.glow_tex()
 	fire_light.color = Color("#ff9a4a")
-	fire_light.texture_scale = 1.4
+	fire_light.texture_scale = 2.2
+	fire_light.energy = 1.3
 	fire_light.position = camp_pos
 	add_child(fire_light)
 
@@ -121,11 +126,13 @@ func _ready() -> void:
 	hud.ex = self
 	add_child(hud)
 
-	for i in int(GameState.stat("creature_cap")) / 2:
+	for i in int(GameState.stat("creature_cap")):
 		_spawn_creature()
 	for i in int(GameState.stat("block_cap")) / 2 + 1:
 		_spawn_block()
 	hint(DB.region_name(region_index), Color(region.colors.accent))
+	Audio.play_music("expedition")
+	Audio.set_muffled(false)
 
 
 func _process(delta: float) -> void:
@@ -145,6 +152,8 @@ func _process(delta: float) -> void:
 		_low_t -= delta
 		if _low_t <= 0.0:
 			Audio.play("low_oil")
+			if _low_t > -1.0:
+				Audio.set_muffled(true)
 			hint(GameState.t("low_light"), Color("#ff9a6a"))
 			_low_t = 3.0
 	if oil <= 0.0:

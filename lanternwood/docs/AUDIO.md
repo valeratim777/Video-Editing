@@ -17,6 +17,15 @@
 
 `tools/sfx_gen.py` синтезирует 15 эффектов в `game/assets/sfx/`: throw, hit, catch, rare, break, spark, pickup, coin, sell, buy, deny, low_oil, unlock, faint, tap. Потом заменить на настоящие (например, sfxr/ChipTone или звукорежиссёр).
 
+## Музыка в игре
+
+Сгенерировано через Suno (инструментал, ~3 мин, зацикливается в игре):
+- `game/assets/music/village.mp3` — «Lantern Moss Village» (деревня)
+- `game/assets/music/expedition.mp3` — «Moonlit Moss Path» (походы)
+- Вторые варианты для сравнения — в `audio_alt/` (замените файл в `game/assets/music/`, если понравится больше).
+
+Когда кончается свет, музыка уходит под фильтр (приглушается), в деревне — снова чистая.
+
 ## Музыка: промпты для Suno
 
 **Деревня (основная тема)**

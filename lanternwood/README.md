@@ -9,7 +9,12 @@
 | `docs/` | Исследование (`RESEARCH.md`), дизайн-документ (`GDD.md`), экономика (`ECONOMY.md`, `ECONOMY_SIM.md`), навыки (`SKILLS.md`), стиль и промпты для ChatGPT (`ART_STYLE.md`), звук и промпты для Suno (`AUDIO.md`) |
 | `data/` | Баланс и контент в JSON: `economy.json`, `regions.json`, `skills.json` — единый источник правды для игры и симулятора |
 | `tools/` | `economy_sim.py` (симулятор прохождения), `art_gen.py` (пиксельные иконки и спрайты), `sfx_gen.py` (звуки), `gen_skill_docs.py` (справочник навыков) |
-| `game/` | Проект Godot |
+| `game/` | Проект Godot (сцены и логика в `game/scripts/`, тесты в `game/tests/`) |
+| `audio_alt/` | Альтернативные варианты музыки от Suno |
+
+## Скриншоты
+
+`docs/img/screens/` — деревня, дерево навыков, походы (рендерятся командой `xvfb-run godot --path game res://tests/screenshots.tscn`).
 
 ## Как запустить
 
@@ -17,7 +22,7 @@
 2. Открыть `game/project.godot`, нажать F5.
 3. ПК-управление: WASD/стрелки — движение, J или ЛКМ — рогатка, K или ПКМ — кирка, E — взаимодействие, Tab — дерево навыков. На телефоне — джойстик и кнопки на экране.
 
-Данные из `data/` копируются в игру командой `python3 tools/sync_data.py` (делается автоматически перед коммитом; см. ниже).
+Данные из `data/` копируются в игру командой `python3 tools/sync_data.py`. Сборка APK — `docs/BUILD_ANDROID.md`.
 
 ## После изменения баланса
 

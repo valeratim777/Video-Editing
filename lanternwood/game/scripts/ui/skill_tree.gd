@@ -4,9 +4,9 @@ extends CanvasLayer
 
 signal closed
 
-const RING := 56.0
+const RING := 70.0
 const NODE_R := 12.0
-const SPAN := 46.0
+const SPAN := 56.0
 
 var pos: Dictionary = {}
 var selected := ""
@@ -42,7 +42,8 @@ func _ready() -> void:
 	_view.gui_input.connect(_on_input)
 	add_child(_view)
 	_build_ui()
-	pan = Vector2(-60, 0)
+	pan = Vector2(-80, 0)
+	zoom = 0.85
 	_select("first_light")
 	GameState.wallet_changed.connect(_refresh)
 	GameState.skills_changed.connect(_refresh)

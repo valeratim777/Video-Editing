@@ -32,7 +32,7 @@ func setup(expedition: Expedition, pos: Vector2) -> void:
 	light = PointLight2D.new()
 	light.texture = DB.glow_tex()
 	light.color = Color("#ffd9a0")
-	light.energy = 1.15
+	light.energy = 1.35
 	light.position = Vector2(-1, -10)
 	add_child(light)
 	beam = Line2D.new()
@@ -61,8 +61,8 @@ func _physics_process(delta: float) -> void:
 	squash = maxf(0.0, squash - delta * 6.0)
 	sprite.scale = Vector2(1.0 + squash * 0.25, 1.0 - squash * 0.2)
 	var oil_frac := ex.oil / maxf(1.0, ex.oil_max)
-	light.texture_scale = lerpf(0.9, 2.3, clampf(oil_frac * 1.3, 0.0, 1.0)) * ex.light_scale
-	light.energy = 1.15 if oil_frac > 0.25 else 0.8 + 0.35 * absf(sin(anim_t * 9.0))
+	light.texture_scale = lerpf(1.3, 3.4, clampf(oil_frac * 1.3, 0.0, 1.0)) * ex.light_scale
+	light.energy = 1.35 if oil_frac > 0.25 else 0.9 + 0.45 * absf(sin(anim_t * 9.0))
 	light.position.x = 5 if not sprite.flip_h else -5
 	_tools(delta)
 

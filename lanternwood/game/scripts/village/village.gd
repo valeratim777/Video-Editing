@@ -26,6 +26,8 @@ func _ready() -> void:
 	ui.layer = 5
 	add_child(ui)
 	_build_ui()
+	Audio.play_music("village")
+	Audio.set_muffled(false)
 	GameState.sold.connect(_on_sold)
 	GameState.wallet_changed.connect(_refresh_wallet)
 	GameState.skills_changed.connect(queue_redraw)
@@ -281,7 +283,7 @@ func _build_settings(root: Control) -> void:
 	root.add_child(_settings_panel)
 	var v := VBoxContainer.new()
 	_settings_panel.add_child(v)
-	for key in ["sfx", "shake", "flash"]:
+	for key in ["sfx", "music", "shake", "flash"]:
 		v.add_child(UIKit.label(GameState.t(key), 10))
 		var s := HSlider.new()
 		s.min_value = 0.0

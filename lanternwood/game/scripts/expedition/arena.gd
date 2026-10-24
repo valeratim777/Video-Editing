@@ -216,8 +216,6 @@ func _build_collision() -> void:
 
 func _draw() -> void:
 	var fill := Color(colors.fill)
-	var rim := Color(colors.rim)
-	var rim_dark := rim.darkened(0.45)
 	var dot := fill.darkened(0.25)
 	var dot2 := fill.lightened(0.08)
 	for y in h:
@@ -232,6 +230,12 @@ func _draw() -> void:
 				draw_circle(r.position + Vector2(4 + hsh % 7, 4 + (hsh >> 3) % 7), 1.5, dot)
 			if hsh % 5 == 0:
 				draw_rect(Rect2(r.position + Vector2(9, 10), Vector2(2, 2)), dot2)
+
+
+## Bright terrain rims live on the lit layer, so they glow in the dark like moss.
+func draw_rims(ci: CanvasItem) -> void:
+	var rim := Color(colors.rim)
+	var rim_dark := rim.darkened(0.45)
 	for y in h:
 		for x in w:
 			var c := Vector2i(x, y)
@@ -239,13 +243,15 @@ func _draw() -> void:
 				continue
 			var p := Vector2(x * T, y * T)
 			if not is_solid(c + Vector2i.UP):
-				draw_rect(Rect2(p + Vector2(0, -1), Vector2(T, 4)), rim)
-				draw_rect(Rect2(p + Vector2(0, 3), Vector2(T, 1)), rim_dark)
+				ci.draw_rect(Rect2(p + Vector2(0, -4), Vector2(T, 3)), Color(rim, 0.15))
+				ci.draw_rect(Rect2(p + Vector2(0, -1), Vector2(T, 5)), rim)
+				ci.draw_rect(Rect2(p + Vector2(0, -1), Vector2(T, 1)), rim.lightened(0.4))
+				ci.draw_rect(Rect2(p + Vector2(0, 4), Vector2(T, 1)), rim_dark)
 				if (x * 31 + y) % 4 == 0:
-					draw_rect(Rect2(p + Vector2(3, -3), Vector2(2, 2)), rim)
+					ci.draw_rect(Rect2(p + Vector2(3, -3), Vector2(2, 2)), rim)
 			if not is_solid(c + Vector2i.DOWN):
-				draw_rect(Rect2(p + Vector2(0, T - 2), Vector2(T, 2)), rim_dark)
+				ci.draw_rect(Rect2(p + Vector2(0, T - 2), Vector2(T, 2)), rim_dark)
 			if not is_solid(c + Vector2i.LEFT):
-				draw_rect(Rect2(p + Vector2(-1, 0), Vector2(3, T)), rim.darkened(0.15))
+				ci.draw_rect(Rect2(p + Vector2(-1, 0), Vector2(3, T)), rim.darkened(0.15))
 			if not is_solid(c + Vector2i.RIGHT):
-				draw_rect(Rect2(p + Vector2(T - 2, 0), Vector2(3, T)), rim.darkened(0.15))
+				ci.draw_rect(Rect2(p + Vector2(T - 2, 0), Vector2(3, T)), rim.darkened(0.15))
