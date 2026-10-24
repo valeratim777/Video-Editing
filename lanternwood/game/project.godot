@@ -1,0 +1,43 @@
+; Engine configuration file.
+; Input actions are registered in code (scripts/autoload/game_state.gd).
+
+config_version=5
+
+[application]
+
+config/name="Lanternwood"
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+
+[autoload]
+
+DB="*res://scripts/autoload/db.gd"
+GameState="*res://scripts/autoload/game_state.gd"
+Audio="*res://scripts/autoload/audio.gd"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+window/handheld/orientation=4
+
+[gui]
+
+theme/custom_font="res://assets/fonts/PixelifySans.ttf"
+theme/default_font_size=11
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/canvas_textures/default_texture_filter=0
+2d/snap/snap_2d_transforms_to_pixel=true
+environment/defaults/default_clear_color=Color(0.06, 0.05, 0.11, 1)

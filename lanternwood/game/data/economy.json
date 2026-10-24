@@ -1,0 +1,71 @@
+{
+  "_comment": "Single source of truth for balance. Read by the game (Godot) and by tools/economy_sim.py. Stat value = (base + sum(add)) * (1 + sum(pct)).",
+  "currencies": ["amber", "wood", "crystal", "pollen"],
+  "base_stats": {
+    "oil_max": 25.0,
+    "oil_drain": 1.0,
+    "move_speed": 95.0,
+    "inv_slots": 3,
+    "slot_capacity": 4,
+    "sling_damage": 1.0,
+    "sling_fire_rate": 2.5,
+    "sling_ammo": 5,
+    "sling_reload_time": 1.6,
+    "sling_proj_speed": 230.0,
+    "sling_crit_chance": 0.0,
+    "sling_crit_mult": 2.0,
+    "sling_multi_chance": 0.0,
+    "sling_homing": 0,
+    "drill_dps": 3.0,
+    "drill_range": 56.0,
+    "drill_chain": 0,
+    "drill_burst_chance": 0.0,
+    "pickup_range": 28.0,
+    "spawn_rate": 0.45,
+    "creature_cap": 6,
+    "block_spawn_rate": 0.2,
+    "block_cap": 4,
+    "value_mult": 1.0,
+    "silver_chance": 0.02,
+    "gold_chance": 0.002,
+    "rainbow_chance": 0.0,
+    "double_catch": 0.0,
+    "resource_mult": 1.0,
+    "market_slots": 2,
+    "market_sell_time": 2.5,
+    "market_extra_chance": 0.0,
+    "night_shift": 0.0,
+    "keep_on_faint": 0.5,
+    "oil_per_catch": 0.0,
+    "camp_refill": 0,
+    "helper_moths": 0,
+    "helper_beetles": 0,
+    "helper_damage": 1.0
+  },
+  "stat_floor": {
+    "oil_drain": 0.25,
+    "sling_reload_time": 0.2,
+    "market_sell_time": 0.25
+  },
+  "rarity": {
+    "silver": {"mult": 5, "tint": "#d8e4ff"},
+    "gold": {"mult": 25, "tint": "#ffd34d"},
+    "rainbow": {"mult": 100, "tint": "rainbow"}
+  },
+  "region_scaling": {
+    "_comment": "Per region index r (0..8). Value grows faster than HP, so going deeper always pays more once you can handle it.",
+    "creature_value": {"base": 2.0, "growth": 3.0},
+    "creature_hp": {"base": 3.0, "growth": 2.2},
+    "block_hp": {"base": 8.0, "growth": 2.2},
+    "resource_per_block": [1, 2, 3]
+  },
+  "pacing": {
+    "_comment": "Assumptions used by the simulator for time between runs.",
+    "village_seconds": 20,
+    "transition_seconds": 6,
+    "catch_overhead_seconds": 1.2,
+    "mine_overhead_seconds": 1.5,
+    "mining_share_when_needed": 0.35,
+    "targets_minutes": {"region_2": 10, "act_2": 75, "act_3": 210, "finale": 420}
+  }
+}
