@@ -27,3 +27,10 @@ python3 tools/gen_skill_docs.py         # обновить docs/SKILLS.md
 python3 tools/art_gen.py                # если менялись иконки или регионы
 python3 tools/sync_data.py              # скопировать data/ в game/data/
 ```
+
+## Тесты
+
+```bash
+godot --headless --path lanternwood/game res://tests/test_runner.tscn   # логика + бот проходит поход
+python3 lanternwood/tools/check_parity.py                               # формулы игры == формулы симулятора
+```
