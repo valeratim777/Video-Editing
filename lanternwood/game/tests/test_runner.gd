@@ -18,6 +18,7 @@ func _ready() -> void:
 	GameState.recompute()
 	_unit_tests()
 	await _smoke_test()
+	await _all_regions()
 	_parity_dump()
 	print("TESTS PASSED" if failures.is_empty() else "TESTS FAILED: %d" % failures.size())
 	get_tree().quit(0 if failures.is_empty() else 1)
@@ -100,6 +101,14 @@ func _smoke_test() -> void:
 	await _secs(2.0)
 	check(main.current is Results and main.current.summary.fainted, "faint ends expedition")
 	check(main.current.summary.caught == 3, "faint keeps 50%")
+
+
+func _all_regions() -> void:
+	for r in DB.regions.size():
+		GameState.levels[DB.regions[r].unlock if DB.regions[r].unlock != null else "first_light"] = 1
+		main.start_expedition(r)
+		await _secs(2.5)
+		check(main.current is Expedition and main.current.region_index == r, "region %d runs" % r)
 
 
 func _parity_dump() -> void:

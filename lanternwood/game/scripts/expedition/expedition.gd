@@ -37,6 +37,10 @@ var _combo := 0
 var _combo_t := 0.0
 var _low_t := 0.0
 var _burn_cd := 0.0
+var _tut := -1
+var creature_speed := 1.0
+var _spore_t := 0.0
+var _spores: Array = []
 
 
 func _ready() -> void:
@@ -132,6 +136,9 @@ func _ready() -> void:
 		_spawn_block()
 	hint(DB.region_name(region_index), Color(region.colors.accent))
 	Audio.play_music("expedition")
+	if GameState.totals.runs == 0 and region_index == 0:
+		_tut = 0
+		_tutorial_step()
 	Audio.set_muffled(false)
 
 
@@ -175,6 +182,10 @@ func _process(delta: float) -> void:
 	if _combo_t <= 0.0:
 		_combo = 0
 	match region.twist:
+		"sway":
+			creature_speed = 1.0 + 1.2 * maxf(0.0, sin(elapsed * 0.7))
+		"bouncy":
+			_spore_update(delta)
 		"wind":
 			wind = Vector2(sin(elapsed * 0.45) * 70.0, 0)
 		"burning":
@@ -290,6 +301,9 @@ func on_creature_caught(c: Creature) -> void:
 		Audio.play("catch", 1.0 + mini(_combo, 12) * 0.06, -2.0, 0.0)
 		shake(0.12)
 	hud.bump_backpack()
+	if _tut == 0:
+		_tut = 1
+		_tutorial_step()
 
 
 func on_block_broken(b: Block) -> void:
@@ -313,6 +327,9 @@ func on_block_broken(b: Block) -> void:
 
 func on_pickup(p: Pickup) -> void:
 	haul_res += p.amount
+	if _tut == 1:
+		_tut = 2
+		_tutorial_step()
 	Audio.play("pickup", 1.0 + randf() * 0.2)
 	hud.bump_resource()
 
@@ -345,6 +362,45 @@ func finish(fainted: bool) -> void:
 	}
 	await get_tree().create_timer(0.9 if fainted else 0.3).timeout
 	main.show_results(summary)
+
+
+func _tutorial_step() -> void:
+	var key: String = ["tut_catch", "tut_mine", "tut_return"][_tut]
+	await get_tree().create_timer(0.8).timeout
+	if is_instance_valid(hud):
+		hint(GameState.t(key), Color("#9cffe9"))
+
+
+## Glowshroom Hollow: spore clouds drift in and slow the hedgehog down.
+func _spore_update(delta: float) -> void:
+	_spore_t -= delta
+	if _spore_t <= 0.0:
+		_spore_t = 3.5
+		var p := arena.random_open_point(player.global_position, 40.0)
+		_spores.append([p, 6.0])
+		var cloud := CPUParticles2D.new()
+		cloud.amount = 24
+		cloud.lifetime = 2.0
+		cloud.emission_shape = CPUParticles2D.EMISSION_SHAPE_SPHERE
+		cloud.emission_sphere_radius = 22.0
+		cloud.spread = 180
+		cloud.gravity = Vector2.ZERO
+		cloud.initial_velocity_min = 2
+		cloud.initial_velocity_max = 8
+		cloud.scale_amount_max = 3.0
+		cloud.color = Color("#ff8cf0", 0.5)
+		cloud.position = p
+		fx_layer.add_child(cloud)
+		get_tree().create_timer(6.0).timeout.connect(cloud.queue_free)
+	var slowed := false
+	for s in _spores:
+		s[1] -= delta
+		if s[1] > 0.0 and (s[0] as Vector2).distance_to(player.global_position) < 30.0:
+			slowed = true
+	_spores = _spores.filter(func(s): return s[1] > 0.0)
+	if slowed and player.speed_mult > 0.6:
+		hint(GameState.t("spores"), Color("#ff8cf0"))
+	player.speed_mult = 0.5 if slowed else 1.0
 
 
 # --- Effects -------------------------------------------------------------

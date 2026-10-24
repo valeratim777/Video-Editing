@@ -20,6 +20,8 @@ const UI := {
 		"shake": "Screen shake", "music": "Music", "flash": "Flashes", "sfx": "Sound", "leave": "Leave expedition", "resume": "Resume",
 		"rare": "Rare!", "the_end": "The forest shines again. Burr curls up under the World Tree and falls asleep.",
 		"thanks": "Thank you for playing!", "next": "Next", "new_region": "New region unlocked!",
+		"tut_catch": "Hold the slingshot button near glowing creatures", "tut_mine": "Hold the pick button next to a stump to get wood",
+		"tut_return": "Fly back to the campfire before your light runs out", "spores": "Spores slow you down!",
 	},
 	"ru": {
 		"market": "Рынок", "skills": "Дерево навыков", "expedition": "Поход", "choose_region": "Выбери регион",
@@ -31,6 +33,8 @@ const UI := {
 		"shake": "Тряска экрана", "music": "Музыка", "flash": "Вспышки", "sfx": "Звук", "leave": "Покинуть поход", "resume": "Продолжить",
 		"rare": "Редкое!", "the_end": "Лес снова светится. Ёжик сворачивается клубком у Мирового древа и засыпает.",
 		"thanks": "Спасибо за игру!", "next": "Дальше", "new_region": "Открыт новый регион!",
+		"tut_catch": "Держи кнопку рогатки рядом со светящимися существами", "tut_mine": "Держи кнопку кирки рядом с пнём, чтобы добыть дерево",
+		"tut_return": "Вернись к костру, пока не погас фонарь", "spores": "Споры замедляют!",
 	},
 }
 

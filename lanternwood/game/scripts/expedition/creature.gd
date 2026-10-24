@@ -51,7 +51,7 @@ func _process(delta: float) -> void:
 	if _retarget <= 0.0 or position.distance_to(target) < 6.0:
 		target = ex.arena.random_open_point()
 		_retarget = randf_range(2.0, 4.5)
-	var desired := (target - position).normalized() * 22.0
+	var desired := (target - position).normalized() * 22.0 * ex.creature_speed
 	vel = vel.lerp(desired, 1.0 - exp(-1.5 * delta))
 	var next := position + vel * delta
 	if ex.arena.is_solid(ex.arena.to_cell(next)):
